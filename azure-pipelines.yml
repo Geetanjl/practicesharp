@@ -19,34 +19,39 @@ steps:
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  displayName: Dotnet restore
+- task: MSBuild@1
+  displayName: MS Build
   inputs:
-    command: 'restore'
-    projects: '**/*.sln'
-    feedsToUse: 'select'
-    configuration: 'release'
-- task: DotNetCoreCLI@2
-  displayName: Dotnet Build
+    solution: 'practicesharp/Tests/NAudioEqualizer/NAudioEqualizer.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
+- task: MSBuild@1
+  displayName: MS Build
   inputs:
-    command: 'build'
-    projects: '**/*.sln'
-    configuration: 'release'
-- task: DotNetCoreCLI@2
-  displayName: Dotnet run
+    solution: 'practicesharp/NAudioOggVorbis/NAudioOggVorbis.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
+- task: MSBuild@1
+  displayName: MS Build
   inputs:
-    command: 'run'
-    projects: '**/*.sln'
-    configuration: 'release'
-- task: DotNetCoreCLI@2
-  displayName: Dotnet test
-  inputs:
-    command: 'test'
-    projects: '**/*.sln'
-    configuration: 'release'
+    solution: 'practicesharp/PracticeSharpApp/PracticeSharp.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.SourcesDirectory)/Tests/NAudioEqualizer/bin/release'
+    ArtifactName: 'Backend'
+    publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/NAudioOggVorbis/bin/release'
+    ArtifactName: 'Backend'
+    publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/PracticeSharpApp/bin/release'
     ArtifactName: 'Backend'
     publishLocation: 'Container'
