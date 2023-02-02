@@ -22,5 +22,3 @@ steps:
 - task: MSBuild@1
   inputs:
     solution: '**/*.sln'
-    platform: 'Any CPU'
-    configuration: 'Debug'
