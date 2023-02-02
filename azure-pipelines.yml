@@ -20,38 +20,7 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
 - task: MSBuild@1
-  displayName: MS Build
   inputs:
-    solution: 'practicesharp/Tests/NAudioEqualizer/NAudioEqualizer.sln'
-    platform: 'Any CPU'
-    configuration: 'Release'
-- task: MSBuild@1
-  displayName: MS Build
-  inputs:
-    solution: 'practicesharp/NAudioOggVorbis/NAudioOggVorbis.sln'
-    platform: 'Any CPU'
-    configuration: 'Release'
-- task: MSBuild@1
-  displayName: MS Build
-  inputs:
-    solution: 'practicesharp/PracticeSharpApp/PracticeSharp.sln'
-    platform: 'Any CPU'
-    configuration: 'Release'
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/Tests/NAudioEqualizer/bin/release'
-    ArtifactName: 'Backend'
-    publishLocation: 'Container'
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/NAudioOggVorbis/bin/release'
-    ArtifactName: 'Backend'
-    publishLocation: 'Container'
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/PracticeSharpApp/bin/release'
-    ArtifactName: 'Backend'
-    publishLocation: 'Container'
+    solution: '**/*.sln'
+    platform: 'any cpu'
+    configuration: 'release'
